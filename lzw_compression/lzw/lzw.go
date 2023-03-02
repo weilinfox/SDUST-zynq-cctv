@@ -41,24 +41,30 @@ func lzmTest(b []byte) (int, error) {
 
 func main() {
 
-	files := []string{"Baboon.bmp", "BaboonRGB.bmp", "Barbara.bmp", "Cameraman.bmp", "Goldhill.bmp", "Lena.bmp", "LenaRGB.bmp", "Peppers.bmp", "PeppersRGB.bmp",
+	files := []string{"BaboonRGB.bmp", "LenaRGB.bmp", "PeppersRGB.bmp",
 		"test2.bmp", "test3.bmp", "test5.bmp", "test6.bmp", "test8.bmp", "test9.bmp", "test10.bmp", "test11.bmp"}
 
 	for _, f := range files {
-		readBmp("images/" + f)
+		readBmpLzw("images/" + f)
 	}
 
 }
 
-func readBmp(file string) {
+func readBmpLzw(file string) {
+	// fmt.Println(file)
 	f, err := os.ReadFile(file)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
 	}
 
+	if f[28] != 24 {
+		fmt.Println("Skip bidsize", f[28])
+		return
+	}
+
 	comTot := 0
-	for i := 0; i < len(f); i += 3456 * 3 {
+	for i := 54; i < len(f); i += 3456 * 3 {
 
 		e := i + 3456*3
 		if e > len(f) {
@@ -68,12 +74,8 @@ func readBmp(file string) {
 		var r, g, b []byte
 		for j := i; j < e; j += 3 {
 			r = append(r, f[j])
-			if j+1 < e {
-				g = append(g, f[j+1])
-			}
-			if j+2 < e {
-				b = append(b, f[j+2])
-			}
+			g = append(g, f[j+1])
+			b = append(b, f[j+2])
 		}
 		n, err := lzmTest(r)
 

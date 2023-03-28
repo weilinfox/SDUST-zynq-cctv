@@ -12,6 +12,12 @@
 
 第三方库：修改前的 lz4 [原始代码](https://github.com/lz4/lz4/tree/dev/lib) 使用 MIT 协议开源。
 
+[hls_jpeg](hls_jpeg)只做测试使用，原始代码来自这里 [zahraEbrahimiCFAED/JPEG-Encoder-Image-Compression](https://github.com/zahraEbrahimiCFAED/JPEG-Encoder-Image-Compression) 。
+
+仅用于测试在 ANN DCT 中使用 32位 整数代替原先的 32位 浮点来提升吞吐量的效果。
+
+HLS 版本： 2017.4
+
 ## AX7020 Demo 工程
 
 [hdmi_vdma_out.zip](hdmi_vdma_out.zip) 一个 demo 工程，向 VDMA 直接写入 1920x1080 的图像， HDMI 输出为 800x480@60fps。

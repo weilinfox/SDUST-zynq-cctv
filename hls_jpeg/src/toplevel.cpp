@@ -2,14 +2,14 @@
 
 void cvtRGB2YC(IMAGE3 &in, IMAGE3s &out){
 	// ITU.BT-601
-	int c1 = 77;//0.299
-	int c2 = 150;//0.587
-	int c3 = 29;//0.114
-	int c4 = 43;//0.16874
-	int c5 = 85;
-	int c6 = 128;
-	int c7 = 107;
-	int c8 = 21;
+	int16_t c1 = 77;//0.299
+	int16_t c2 = 150;//0.587
+	int16_t c3 = 29;//0.114
+	int16_t c4 = 43;//0.16874
+	int16_t c5 = 85;
+	int16_t c6 = 128;
+	int16_t c7 = 107;
+	int16_t c8 = 21;
 
 	for (int y = 0; y < MAX_HEIGHT; y++) {
 		for (int x = 0; x < MAX_WIDTH; x++) {
